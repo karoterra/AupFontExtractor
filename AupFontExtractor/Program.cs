@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using Karoterra.AupDotNet;
 using Karoterra.AupDotNet.ExEdit;
 using Karoterra.AupDotNet.ExEdit.Effects;
@@ -10,6 +11,8 @@ namespace AupFontExtractor
 {
     class Program
     {
+        private const string Pattern = @"<s\d*,([^,>]+)(,[BI]*)?>";
+
         static int Main(string[] args)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -74,11 +77,17 @@ namespace AupFontExtractor
             }
 
             var fonts = new HashSet<string>();
+            var reg = new Regex(Pattern);
             foreach (var obj in exedit.Objects)
             {
                 if (obj.Effects[0] is TextEffect te)
                 {
                     fonts.Add(te.Font);
+                    var matches = reg.Matches(te.Text);
+                    foreach (Match m in matches)
+                    {
+                        fonts.Add(m.Groups[1].Value);
+                    }
                 }
             }
 
