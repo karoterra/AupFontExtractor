@@ -7,8 +7,16 @@ namespace AupFontExtractor
         public string inputPath;
         public string outputPath;
 
+        public bool sort;
+        public bool help;
+
         public AppOption(string[] args)
         {
+            inputPath = null;
+            outputPath = null;
+            sort = true;
+            help = false;
+
             for (int i = 0; i < args.Length; i++)
             {
                 switch (args[i])
@@ -19,6 +27,16 @@ namespace AupFontExtractor
                             i++;
                             outputPath = args[i];
                         }
+                        break;
+                    case "-s":
+                        sort = true;
+                        break;
+                    case "-S":
+                        sort = false;
+                        break;
+                    case "-h":
+                    case "--help":
+                        help = true;
                         break;
                     default:
                         if (inputPath == null)

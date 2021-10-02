@@ -18,9 +18,16 @@ namespace AupFontExtractor
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             var opt = new AppOption(args);
+            if (opt.help)
+            {
+                Usage();
+                WaitEnterKey();
+                return 1;
+            }
             if (opt.inputPath == null)
             {
                 Console.Error.WriteLine("ファイル名を指定してください");
+                Usage();
                 WaitEnterKey();
                 return 1;
             }
@@ -76,7 +83,15 @@ namespace AupFontExtractor
                 return 1;
             }
 
-            var fonts = new HashSet<string>();
+            ICollection<string> fonts;
+            if (opt.sort)
+            {
+                fonts = new SortedSet<string>();
+            }
+            else
+            {
+                fonts = new HashSet<string>();
+            }
             var reg = new Regex(Pattern);
             foreach (var obj in exedit.Objects)
             {
@@ -115,6 +130,19 @@ namespace AupFontExtractor
         {
             Console.WriteLine("終了するにはEnterを押してください...");
             Console.ReadLine();
+        }
+
+        static void Usage()
+        {
+            Console.WriteLine(@"Usage:
+  AupFontExtractor [options] aup-file
+
+Option:
+  -h, --help  ヘルプを表示する
+  -s          フォントリストをソートして出力(デフォルト)
+  -S          フォントリストをソートせずに出力
+  -o <file>   フォントリストを <file> に出力する
+");
         }
     }
 }
