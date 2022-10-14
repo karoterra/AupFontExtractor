@@ -8,8 +8,8 @@
 [Releases](https://github.com/karoterra/AupFontExtractor/releases)
 から最新版の ZIP ファイルをダウンロードし、好きな場所に展開してください。
 
-.NET 5 をインストール済みの方は `AupFontExtractor-xxx-win-x64-fd.zip` をダウンロードしてください。
-.NET 5 をインストールせずに利用したい方やよく分からない方は `AupFontExtractor-xxx-win-x64-sc.zip` をダウンロードしてください。
+.NET 6 をインストール済みの方は `AupFontExtractor-xxx-win-x64-fd.zip` をダウンロードしてください。
+.NET 6 をインストールせずに利用したい方やよく分からない方は `AupFontExtractor-xxx-win-x64-sc.zip` をダウンロードしてください。
 
 アンインストール時には展開したフォルダを削除してください。
 
