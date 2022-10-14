@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AupDotNet\src\AupDotNet\AupDotNet.csproj" />
+    <PackageReference Include="Karoterra.AupDotNet" Version="0.1.0" />
   </ItemGroup>
 
 </Project>
